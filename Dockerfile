@@ -2,7 +2,7 @@
 # Dockerfile that contains SteamCMD
 ############################################################
 FROM debian:stretch
-MAINTAINER Walentin 'Walki' Lamonos <walentinlamonos@gmail.com>
+LABEL maintainer="walentinlamonos@gmail.com"
 
 # Install, update & upgrade packages
 # Create user for the server

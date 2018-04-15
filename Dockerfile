@@ -20,14 +20,12 @@ RUN apt-get update && apt-get install -y \
 # Switch to user steam
 USER steam
 
-RUN mkdir -p /home/steam/steamcmd
-
-VOLUME /home/steam/steamcmd
-
 # Create Directory for SteamCMD
 # Download SteamCMD
 # Extract and delete archive
-RUN cd /home/steam/steamcmd && \
+RUN mkdir -p /home/steam/steamcmd && cd /home/steam/steamcmd && \
         curl -o steamcmd_linux.tar.gz "https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz" && \
         tar zxf steamcmd_linux.tar.gz && \
         rm steamcmd_linux.tar.gz
+
+VOLUME /home/steam/

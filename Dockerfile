@@ -28,4 +28,4 @@ RUN mkdir -p /home/steam/steamcmd && cd /home/steam/steamcmd && \
         tar zxf steamcmd_linux.tar.gz && \
         rm steamcmd_linux.tar.gz
 
-VOLUME /home/steam/
+VOLUME /home/steam/steamcmd

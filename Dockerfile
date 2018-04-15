@@ -22,7 +22,7 @@ USER steam
 
 RUN mkdir -p /home/steam/steamcmd
 
-VOLUME /home/steam/
+VOLUME /home/steam/steamcmd
 
 # Create Directory for SteamCMD
 # Download SteamCMD

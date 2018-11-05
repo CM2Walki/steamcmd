@@ -9,6 +9,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 # This also creates the home directory we later need
 # Clean TMP, apt-get cache and other stuff to make the image smaller
 RUN apt-get update && apt-get install -y \
+        lib32stdc++6 \
         lib32gcc1 \
         curl && \
         apt-get -y upgrade && \

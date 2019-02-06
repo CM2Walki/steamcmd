@@ -11,7 +11,7 @@ LABEL maintainer="walentinlamonos@gmail.com"
 RUN apt-get update && apt-get install -y --no-install-recommends \
         lib32stdc++6 \
         lib32gcc1 \
-        curl && \
+        curl \
         ca-certificates && \
         apt-get clean autoclean && \
         apt-get autoremove -y && \

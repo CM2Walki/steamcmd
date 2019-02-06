@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         lib32stdc++6 \
         lib32gcc1 \
         curl && \
-        apt-get -y upgrade && \
         apt-get clean autoclean && \
         apt-get autoremove -y && \
         rm -rf /var/lib/{apt,dpkg,cache,log}/ && \

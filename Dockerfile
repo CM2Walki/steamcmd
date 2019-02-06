@@ -1,14 +1,14 @@
 ############################################################
 # Dockerfile that contains SteamCMD
 ############################################################
-FROM debian:stretch
+FROM debian:stretch-slim
 LABEL maintainer="walentinlamonos@gmail.com"
 
 # Install, update & upgrade packages
 # Create user for the server
 # This also creates the home directory we later need
 # Clean TMP, apt-get cache and other stuff to make the image smaller
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         lib32stdc++6 \
         lib32gcc1 \
         curl && \

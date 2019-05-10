@@ -1,6 +1,6 @@
 [![Docker Build Status](https://img.shields.io/docker/build/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![](https://images.microbadger.com/badges/image/cm2network/steamcmd.svg)](https://microbadger.com/images/cm2network/steamcmd)
 # Supported tags and respective `Dockerfile` links
--	[`latest` (*stretch/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch/Dockerfile)
+-	[`steam`, `latest` (*stretch/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch/Dockerfile)
 -	[`root` (*stretch-root/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch-root/Dockerfile)
 
 # What is SteamCMD?

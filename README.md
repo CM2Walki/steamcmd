@@ -15,10 +15,18 @@ $ ./home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/st
 ```
 This can prove useful if you are just looking to test a certain game server installation.
 ## Configuration:
-The image's default user is `steam`, any command executed in a higher layer `Dockerfile` will therefor be executed as that user.<br/><br/>
 The steamcmd.sh can be found at the following path: */home/steam/steamcmd*
 
 ## Examples:
 Consult the following repositories for examples on how to base an image off this one:<br/>
 https://hub.docker.com/r/cm2network/squad/<br/>
 https://hub.docker.com/r/cm2network/csgo/
+
+# Image Variants:
+The `steamcmd` images come in many flavors, each designed for a specific use case.
+
+## `steamcmd:latest`
+This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used as the base to build other images off of. This image's default user is `steam`, any command executed in a higher layer `Dockerfile` will therefor be executed as that user.<br/>
+
+## `steamcmd:root`
+This is a specialized image. This image's default user is `root`, if you need to install additional packages for you game server and do not want to create excess layers, then this is the right choice.

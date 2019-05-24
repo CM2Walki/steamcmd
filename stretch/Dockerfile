@@ -2,7 +2,10 @@
 # Dockerfile that contains SteamCMD
 ############################################################
 FROM debian:stretch-slim
+
 LABEL maintainer="walentinlamonos@gmail.com"
+
+ENV STEAMCMDDIR /home/steam/steamcmd
 
 # Install, update & upgrade packages
 # Create user for the server
@@ -20,8 +23,8 @@ RUN set -x \
 		ca-certificates \
 	&& useradd -m steam \
 	&& su steam -c \
-		"mkdir -p /home/steam/steamcmd \
-		&& cd /home/steam/steamcmd \
+		"mkdir -p ${STEAMCMDDIR} \
+		&& cd ${STEAMCMDDIR} \
 		&& wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf -" \
         && apt-get clean autoclean \
         && apt-get autoremove -y \
@@ -30,4 +33,6 @@ RUN set -x \
 # Switch to user steam
 USER steam
 
-VOLUME /home/steam/steamcmd
+WORKDIR ${STEAMCMDDIR}
+
+VOLUME ${STEAMCMDDIR}

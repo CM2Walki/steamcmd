@@ -1,7 +1,7 @@
 [![Docker Build Status](https://img.shields.io/docker/build/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![](https://images.microbadger.com/badges/image/cm2network/steamcmd.svg)](https://microbadger.com/images/cm2network/steamcmd)
 # Supported tags and respective `Dockerfile` links
--	[`steam`, `latest` (*stretch/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch/Dockerfile)
--	[`root` (*stretch-root/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch-root/Dockerfile)
+  -	[`steam`, `latest` (*stretch/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch/Dockerfile)
+  -	[`root` (*stretch-root/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch-root/Dockerfile)
 
 # What is SteamCMD?
 The Steam Console Client or SteamCMD is a command-line version of the Steam client. Its primary use is to install and update various dedicated servers available on Steam using a command-line interface. It works with games that use the SteamPipe content system. All games have been migrated from the deprecated HLDSUpdateTool to SteamCMD. This image can be used as a base image for Steam-based dedicated servers (Source: [developer.valvesoftware.com](https://developer.valvesoftware.com/wiki/SteamCMD)).
@@ -31,3 +31,5 @@ This is the defacto image. If you are unsure about what your needs are, you prob
 
 ## `steamcmd:root`
 This is a specialized image. This image's default user is `root`. If you need to install additional packages for you game server and do not want to create excess layers, then this is the right choice.
+
+_Note: Running the `steamcmd.sh` as `root` will fail because the owner is the user `steam`, either swap the active user using `su steam` or use chown to change the ownership of the directory._

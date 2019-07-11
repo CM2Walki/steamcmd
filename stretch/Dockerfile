@@ -28,7 +28,6 @@ RUN set -x \
 		&& wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf -" \
 	&& apt-get remove --purge -y \
 		wget \
-		ca-certificates \
 	&& apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*

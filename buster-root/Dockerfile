@@ -1,7 +1,7 @@
 ############################################################
 # Dockerfile that contains SteamCMD
 ############################################################
-FROM debian:stretch-slim
+FROM debian:buster-slim
 
 LABEL maintainer="walentinlamonos@gmail.com"
 
@@ -17,10 +17,10 @@ ENV STEAMCMDDIR /home/steam/steamcmd
 RUN set -x \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		lib32stdc++6=6.3.0-18+deb9u1 \
-		lib32gcc1=1:6.3.0-18+deb9u1 \
-		wget=1.18-5+deb9u3 \
-		ca-certificates=20161130+nmu1+deb9u1 \
+		lib32stdc++6=8.3.0-6 \
+		lib32gcc1=1:8.3.0-6 \
+		wget=1.20.1-1.1 \
+		ca-certificates=20190110 \
 	&& useradd -m steam \
 	&& su steam -c \
 		"mkdir -p ${STEAMCMDDIR} \
@@ -31,9 +31,6 @@ RUN set -x \
 	&& apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
-
-# Switch to user steam
-USER steam
 
 WORKDIR $STEAMCMDDIR
 

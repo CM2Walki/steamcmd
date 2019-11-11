@@ -1,7 +1,7 @@
 [![](https://img.shields.io/codacy/grade/c9aa793af739452bb9a9fc45a4758328.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Build Status](https://img.shields.io/docker/build/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Stars](https://img.shields.io/docker/stars/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/steamcmd.svg)](https://hub.docker.com/r/cm2network/steamcmd/) [![](https://images.microbadger.com/badges/image/cm2network/steamcmd.svg)](https://microbadger.com/images/cm2network/steamcmd)
 # Supported tags and respective `Dockerfile` links
-  -	[`steam`, `latest` (*stretch/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch/Dockerfile)
-  -	[`root` (*stretch-root/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/stretch-root/Dockerfile)
+  -	[`steam`, `latest` (*buster/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/buster/Dockerfile)
+  -	[`root` (*buster-root/Dockerfile*)](https://github.com/CM2Walki/steamcmd/blob/master/buster-root/Dockerfile)
 
 # What is SteamCMD?
 The Steam Console Client or SteamCMD is a command-line version of the Steam client. Its primary use is to install and update various dedicated servers available on Steam using a command-line interface. It works with games that use the SteamPipe content system. All games have been migrated from the deprecated HLDSUpdateTool to SteamCMD. This image can be used as a base image for Steam-based dedicated servers (Source: [developer.valvesoftware.com](https://developer.valvesoftware.com/wiki/SteamCMD)).

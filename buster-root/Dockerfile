@@ -4,7 +4,7 @@
 FROM debian:buster-slim
 
 LABEL maintainer="walentinlamonos@gmail.com"
-ARG PUID=27444
+ARG PUID=1000
 
 ENV STEAMCMDDIR /home/steam/steamcmd
 

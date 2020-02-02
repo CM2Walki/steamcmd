@@ -4,6 +4,7 @@
 FROM debian:buster-slim
 
 LABEL maintainer="walentinlamonos@gmail.com"
+ARG PUID=1000
 
 ENV STEAMCMDDIR /home/steam/steamcmd
 
@@ -21,7 +22,7 @@ RUN set -x \
 		lib32gcc1=1:8.3.0-6 \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
-	&& useradd -m steam \
+	&& useradd -u $PUID -m steam \
 	&& su steam -c \
 		"mkdir -p ${STEAMCMDDIR} \
 		&& cd ${STEAMCMDDIR} \

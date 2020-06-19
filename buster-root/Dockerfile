@@ -24,8 +24,10 @@ RUN set -x \
 	&& useradd -m steam \
 	&& su steam -c \
 		"mkdir -p ${STEAMCMDDIR} \
-		&& cd ${STEAMCMDDIR} \
-		&& wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar zxf -" \
+		&& wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C ${STEAMCMDDIR} \
+		&& ./${STEAMCMDDIR}/steamcmd.sh +quit \
+		&& mkdir /home/steam/.steam/sdk32 \
+		&& ln -s /home/steam/steamcmd/linux32/steamclient.so /home/steam/.steam/sdk32/steamclient.so" \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \

@@ -15,7 +15,7 @@ $ ./home/steam/steamcmd/steamcmd.sh +login anonymous +force_install_dir /home/st
 ```
 This can prove useful if you are just looking to test a certain game server installation.
 ## Configuration:
-The steamcmd.sh can be found at the following path: */home/steam/steamcmd*
+This image includes the nano text editor. The steamcmd.sh can be found at the following path: */home/steam/steamcmd*
 
 ## Examples:
 Consult the following repositories for examples on how to base an image off of this one:<br/>

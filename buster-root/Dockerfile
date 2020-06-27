@@ -22,6 +22,7 @@ RUN set -x \
 		lib32gcc1=1:8.3.0-6 \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
+		nano=3.2-3 \
 	&& useradd -u $PUID -m steam \
 	&& su steam -c \
 		"mkdir -p ${STEAMCMDDIR} \

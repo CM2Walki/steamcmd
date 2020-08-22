@@ -18,14 +18,15 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 # Download SteamCMD
 # Extract and delete archive
 RUN set -x \
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		lib32stdc++6=8.3.0-6 \
 		lib32gcc1=1:8.3.0-6 \
-		libsdl2-2.0-0\:i386=2.0.9+dfsg1-1 \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
 		nano=3.2-3 \
+		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \
 	&& useradd -u "${PUID}" -m "${USER}" \
         && su "${USER}" -c \
                 "mkdir -p \"${STEAMCMDDIR}\" \

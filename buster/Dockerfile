@@ -6,7 +6,9 @@ FROM debian:buster-slim
 LABEL maintainer="walentinlamonos@gmail.com"
 ARG PUID=1000
 
-ENV STEAMCMDDIR /home/steam/steamcmd
+ENV USER steam
+ENV HOMEDIR "/home/${USER}"
+ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 # Install, update & upgrade packages
 # Create user for the server
@@ -23,22 +25,22 @@ RUN set -x \
 		wget=1.20.1-1.1 \
 		ca-certificates=20190110 \
 		nano=3.2-3 \
-	&& useradd -u $PUID -m steam \
-        && su steam -c \
-                "mkdir -p ${STEAMCMDDIR} \
-                && wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C ${STEAMCMDDIR} \
-                && ./${STEAMCMDDIR}/steamcmd.sh +quit \
-                && mkdir /home/steam/.steam/sdk32 \
-                && ln -s /home/steam/steamcmd/linux32/steamclient.so /home/steam/.steam/sdk32/steamclient.so" \
+	&& useradd -u "${PUID}" -m "${USER}" \
+        && su "${USER}" -c \
+                "mkdir -p \"${STEAMCMDDIR}\" \
+                && wget -qO- 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C \"${STEAMCMDDIR}\" \
+                && \"./${STEAMCMDDIR}/steamcmd.sh\" +quit \
+                && mkdir -p \"${HOMEDIR}/.steam/sdk32\" \
+                && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${HOMEDIR}/.steam/sdk32/steamclient.so\"" \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \
 	&& apt-get autoremove -y \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Switch to user steam
-USER steam
+# Switch to user
+USER ${USER}
 
-WORKDIR $STEAMCMDDIR
+WORKDIR ${STEAMCMDDIR}
 
-VOLUME $STEAMCMDDIR
+VOLUME ${STEAMCMDDIR}

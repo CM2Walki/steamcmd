@@ -9,7 +9,6 @@ ARG PUID=1000
 ENV USER steam
 ENV HOMEDIR "/home/${USER}"
 ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
-ENV LD_LIBRARY_PATH "${HOMEDIR}/steamcmd/linux64:${HOMEDIR}/steamcmd/linux32:$LD_LIBRARY_PATH"
 
 # Install, update & upgrade packages
 # Create user for the server

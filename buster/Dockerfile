@@ -9,7 +9,6 @@ ARG PUID=1000
 ENV USER steam
 ENV HOMEDIR "/home/${USER}"
 ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
-ENV LD_LIBRARY_PATH "${HOMEDIR}/steamcmd/linux64:${HOMEDIR}/steamcmd/linux32:$LD_LIBRARY_PATH"
 
 # Install, update & upgrade packages
 # Create user for the server
@@ -37,9 +36,9 @@ RUN set -x \
                 && mkdir -p \"${HOMEDIR}/.steam/sdk32\" \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${HOMEDIR}/.steam/sdk32/steamclient.so\" \
 		&& ln -s \"${STEAMCMDDIR}/linux32/steamcmd\" \"${STEAMCMDDIR}/linux32/steam\" \
-		&& ln -s \"${STEAMCMDDIR}/steamcmd.sh\" \"${STEAMCMDDIR}/steam.sh\"" \
+		&& ln -s \"${STEAMCMDDIR}/steamcmd.sh\" \"${STEAMCMDDIR}/steam.sh\" \
 		&& ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"/usr/lib/i386-linux-gnu/steamclient.so\" \
-		&& ln -s \"${STEAMCMDDIR}/linux64/steamclient.so\" \"/usr/lib/x86_64-linux-gnu/steamclient.so\" \
+		&& ln -s \"${STEAMCMDDIR}/linux64/steamclient.so\" \"/usr/lib/x86_64-linux-gnu/steamclient.so\"" \
 	&& apt-get remove --purge -y \
 		wget \
 	&& apt-get clean autoclean \

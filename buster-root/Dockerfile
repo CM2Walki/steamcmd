@@ -28,6 +28,7 @@ RUN set -x \
 		ca-certificates=20190110 \
 		nano=3.2-3 \
 		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \
+		curl=7.64.0-4+deb10u1 \
 	&& useradd -u "${PUID}" -m "${USER}" \
 	&& su "${USER}" -c \
                 "mkdir -p \"${STEAMCMDDIR}\" \

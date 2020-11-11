@@ -1,0 +1,10 @@
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/buster-root"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "docker"
+    directory: "/buster"
+    schedule:
+      interval: "weekly"

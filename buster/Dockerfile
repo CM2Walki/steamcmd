@@ -24,7 +24,7 @@ RUN set -x \
 		lib32stdc++6=8.3.0-6 \
 		lib32gcc1=1:8.3.0-6 \
 		wget=1.20.1-1.1 \
-		ca-certificates=20190110 \
+		ca-certificates=20200601~deb10u2 \
 		nano=3.2-3 \
 		libsdl2-2.0-0:i386=2.0.9+dfsg1-1 \
 		curl=7.64.0-4+deb10u1 \

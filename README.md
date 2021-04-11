@@ -33,3 +33,6 @@ This is the defacto image. If you are unsure about what your needs are, you prob
 This is a specialized image. This image's default user is `root`. If you need to install additional packages for you game server and do not want to create excess layers, then this is the right choice.
 
 _Note: Running the `steamcmd.sh` as `root` will fail because the owner is the user `steam`, either swap the active user using `su steam` or use chown to change the ownership of the directory._
+
+# Contributors
+[![Contributors Display](https://badges.pufler.dev/contributors/CM2Walki/steamcmd?size=50&padding=5&bots=false)](https://github.com/CM2Walki/steamcmd/graphs/contributors)

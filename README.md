@@ -10,8 +10,7 @@ The Steam Console Client or SteamCMD is a command-line version of the Steam clie
 Whilst it's recommended to use this image as a base image of other game servers, you can also run it in an interactive shell using the following command:
 ```console
 $ docker run -it --name=steamcmd cm2network/steamcmd bash
-$ ./home/steam/steamcmd/steamcmd.sh +force_install_dir /home/steam/squad-dedicated +login anonymous \
-    +app_update 403240 +quit
+$ ./steamcmd.sh +force_install_dir /home/steam/squad-dedicated +login anonymous +app_update 403240 +quit
 ```
 This can prove useful if you are just looking to test a certain game server installation.
 ## Configuration:

@@ -24,7 +24,7 @@ $ docker run -it \
     -v "steamcmd_volume:/home/steam/steamcmd" \
     cm2network/steamcmd bash
 ```
-This setup is necessary if you have to download a non-anonymous appID or upload a steampipe build. For information checkout:
+This setup is necessary if you have to download a non-anonymous appID or upload a steampipe build. For an example check out:
 https://hub.docker.com/r/cm2network/steampipe/
 
 ## Configuration:

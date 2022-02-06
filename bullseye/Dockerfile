@@ -12,7 +12,6 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 RUN set -x \
 	# Install, update & upgrade packages
-	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		lib32stdc++6=10.2.1-6 \
@@ -36,7 +35,6 @@ RUN set -x \
 		&& ln -s \"${STEAMCMDDIR}/linux32/steamcmd\" \"${STEAMCMDDIR}/linux32/steam\" \
 		&& ln -s \"${STEAMCMDDIR}/steamcmd.sh\" \"${STEAMCMDDIR}/steam.sh\"" \
 	# Symlink steamclient.so; So misconfigured dedicated servers can find it
-	&& ln -s "${STEAMCMDDIR}/linux32/steamclient.so" "/usr/lib/i386-linux-gnu/steamclient.so" \
 	&& ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so" \
 	# Clean up
 	&& apt-get remove --purge -y \

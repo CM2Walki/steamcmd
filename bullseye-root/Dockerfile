@@ -11,7 +11,8 @@ ENV HOMEDIR "/home/${USER}"
 ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 RUN set -x \
-	# Install, update & upgrade packages	
+	# Install, update & upgrade packages
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
                 lib32stdc++6=10.2.1-6 \

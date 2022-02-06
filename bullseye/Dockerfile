@@ -12,7 +12,6 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 RUN set -x \
 	# Install, update & upgrade packages
-	&& dpkg --add-architecture i386 \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		lib32stdc++6=10.2.1-6 \
@@ -20,7 +19,6 @@ RUN set -x \
 		wget=1.21-1+deb11u1 \
 		ca-certificates=20210119 \
 		nano=5.4-2 \
-		libsdl2-2.0-0:i386=2.0.14+dfsg2-3 \
 		curl=7.74.0-1.3+deb11u1 \
 		locales=2.31-13+deb11u2 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \

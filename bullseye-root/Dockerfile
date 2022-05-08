@@ -13,6 +13,7 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \
+        && apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
                 lib32stdc++6=10.2.1-6 \
                 lib32gcc-s1=10.2.1-6 \
@@ -20,7 +21,7 @@ RUN set -x \
                 ca-certificates=20210119 \
                 nano=5.4-2 \
                 curl=7.74.0-1.3+deb11u1 \
-                locales=2.31-13+deb11u2 \
+                locales=2.31-13+deb11u3 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user
@@ -37,10 +38,8 @@ RUN set -x \
 	# Symlink steamclient.so; So misconfigured dedicated servers can find it
 	&& ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so" \
 	# Clean up
-	&& apt-get remove --purge -y \
-		wget \
-	&& apt-get clean autoclean \
-	&& apt-get autoremove -y \
-	&& rm -rf /var/lib/apt/lists/*
+        && apt-get remove --purge --auto-remove -y \
+                wget \
+        && rm -rf /var/lib/apt/lists/*
 
 WORKDIR ${STEAMCMDDIR}

@@ -13,7 +13,6 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \
-	&& apt-get upgrade -y \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		lib32stdc++6=10.2.1-6 \
 		lib32gcc-s1=10.2.1-6 \

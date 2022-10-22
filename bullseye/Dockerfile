@@ -1,7 +1,7 @@
 ############################################################
 # Dockerfile that contains SteamCMD
 ############################################################
-FROM debian:bullseye-slim
+FROM debian:bullseye-slim as build_stage
 
 LABEL maintainer="walentinlamonos@gmail.com"
 ARG PUID=1000
@@ -41,7 +41,10 @@ RUN set -x \
 		wget \
 	&& rm -rf /var/lib/apt/lists/*
 
+FROM build_stage AS bullseye-root
+WORKDIR ${STEAMCMDDIR}
+
+FROM build_stage AS bullseye
 # Switch to user
 USER ${USER}
-
 WORKDIR ${STEAMCMDDIR}

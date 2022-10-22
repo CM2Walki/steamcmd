@@ -44,7 +44,6 @@ RUN set -x \
 FROM build_stage AS bullseye-root
 WORKDIR ${STEAMCMDDIR}
 
-FROM build_stage AS bullseye
+FROM bullseye-root AS bullseye
 # Switch to user
 USER ${USER}
-WORKDIR ${STEAMCMDDIR}

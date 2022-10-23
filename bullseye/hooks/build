@@ -1,0 +1,5 @@
+#!/bin/bash
+BUILD_PATH=$(echo ${DOCKERFILE_PATH}| sed 's#/#..#g' | sed 's#[a-zA-Z0-9]\+#/#g' | cut -c 2- )
+ 
+docker build --target=bullseye -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:latest -t $DOCKER_REPO:steam ${BUILD_PATH}.
+docker build --target=bullseye-root -f $(basename ${DOCKERFILE_PATH}) -t $DOCKER_REPO:root ${BUILD_PATH}.

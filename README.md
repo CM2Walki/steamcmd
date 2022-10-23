@@ -27,18 +27,25 @@ $ docker run -it \
 This setup is necessary if you have to download a non-anonymous appID or upload a steampipe build. For an example check out:
 https://hub.docker.com/r/cm2network/steampipe/
 
-## Configuration:
+## Configuration
 This image includes the `nano` text editor for convenience. 
 
 The `steamcmd.sh` can be found in the following directory: `/home/steam/steamcmd`
 
-## Examples:
-Consult the following repositories for examples on how to base an image off of this one:<br/>
-https://hub.docker.com/r/cm2network/squad/<br/>
-https://hub.docker.com/r/cm2network/csgo/<br>
-https://hub.docker.com/r/cm2network/mordhau/
+## Examples
+Images utilizing this base image:
 
-# Image Variants:
+| Image  | Pulls | Build Status |
+| ------------- | ------------- | ------------- |
+| [cm2network/csgo](https://hub.docker.com/r/cm2network/csgo/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/csgo)](https://hub.docker.com/r/cm2network/csgo/) |
+| [cm2network/tf2](https://hub.docker.com/r/cm2network/tf2/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) |
+| [cm2network/squad](https://hub.docker.com/r/cm2network/squad/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/squad.svg)](https://hub.docker.com/r/cm2network/squad/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/squad.svg)](https://hub.docker.com/r/cm2network/squad/) |
+| [cm2network/mordhau](https://hub.docker.com/r/cm2network/mordhau/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/mordhau.svg)](https://hub.docker.com/r/cm2network/mordhau/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/mordhau.svg)](https://hub.docker.com/r/cm2network/mordhau/) |
+| [cm2network/holdfastnaw](https://hub.docker.com/r/cm2network/holdfastnaw/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/holdfastnaw.svg)](https://hub.docker.com/r/cm2network/holdfastnaw/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/holdfastnaw.svg)](https://hub.docker.com/r/cm2network/holdfastnaw/) |
+| [cm2network/valheim](https://hub.docker.com/r/cm2network/valheim/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/valheim.svg)](https://hub.docker.com/r/cm2network/valheim/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/valheim.svg)](https://hub.docker.com/r/cm2network/valheim/) |
+| [cm2network/steampipe](https://hub.docker.com/r/cm2network/steampipe/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/steampipe.svg)](https://hub.docker.com/r/cm2network/steampipe/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/steampipe.svg)](https://hub.docker.com/r/cm2network/steampipe/) |
+
+# Image Variants
 The `steamcmd` images come in two flavors, each designed for a specific use case.
 
 ## `steamcmd:latest`

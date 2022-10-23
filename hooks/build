@@ -1,2 +1,0 @@
-docker build --target=bullseye -f $DOCKERFILE_PATH -t $DOCKER_REPO:latest -t $DOCKER_REPO:steam .
-docker build --target=bullseye-root -f $DOCKERFILE_PATH -t $DOCKER_REPO:root .

@@ -1,2 +1,2 @@
 #!/bin/bash
-docker push --all-tags
+docker push --all-tags ${DOCKER_REPO} 

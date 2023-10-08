@@ -37,6 +37,7 @@ Images utilizing this base image:
 
 | Image  | Pulls | Build Status |
 | ------------- | ------------- | ------------- |
+| [cm2network/cs2](https://hub.docker.com/r/cm2network/cs2/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/cs2.svg)](https://hub.docker.com/r/cm2network/cs2/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/cs2)](https://hub.docker.com/r/cm2network/cs2/) |
 | [cm2network/csgo](https://hub.docker.com/r/cm2network/csgo/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/csgo.svg)](https://hub.docker.com/r/cm2network/csgo/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/csgo)](https://hub.docker.com/r/cm2network/csgo/) |
 | [cm2network/tf2](https://hub.docker.com/r/cm2network/tf2/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/tf2.svg)](https://hub.docker.com/r/cm2network/tf2/) |
 | [cm2network/squad](https://hub.docker.com/r/cm2network/squad/) | [![Docker Pulls](https://img.shields.io/docker/pulls/cm2network/squad.svg)](https://hub.docker.com/r/cm2network/squad/) | [![Docker Build Status](https://img.shields.io/docker/cloud/build/cm2network/squad.svg)](https://hub.docker.com/r/cm2network/squad/) |

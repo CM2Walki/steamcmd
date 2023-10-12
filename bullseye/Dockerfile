@@ -18,9 +18,8 @@ RUN set -x \
 		lib32gcc-s1=10.2.1-6 \
 		ca-certificates=20210119 \
 		nano=5.4-2+deb11u2 \
-		curl=7.74.0-1.3+deb11u9 \
+		curl=7.74.0-1.3+deb11u10 \
 		locales=2.31-13+deb11u7 \
-  		libncurses5=6.2+20201114-2+deb11u2 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user

@@ -1,7 +1,7 @@
 ############################################################
 # Dockerfile that contains SteamCMD
 ############################################################
-FROM weilbyte/box:arm64v8-debian-11 as build_stage
+FROM weilbyte/box:debian-11 as build_stage
 
 LABEL maintainer="github@snry.me"
 ARG PUID=1000
@@ -26,7 +26,7 @@ RUN set -x \
 	&& su "${USER}" -c \
 		"mkdir -p \"${STEAMCMDDIR}\" \
                 && curl -fsSL 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C \"${STEAMCMDDIR}\" \
-                && (/usr/local/bin/box86 ${STEAMCMDDIR}/linux32/steamcmd +quit || true) \
+                && (/usr/local/bin/box86 ${STEAMCMDDIR}/linux32/steamcmd +quit; exit_code=$?; if [ ${exit_code} -eq 42 ]; then exit 0; fi; exit ${exit_code}) \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${STEAMCMDDIR}/steamservice.so\" \
                 && mkdir -p \"${HOMEDIR}/.steam/sdk32\" \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${HOMEDIR}/.steam/sdk32/steamclient.so\" \

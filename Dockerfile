@@ -1,7 +1,11 @@
 ############################################################
 # Dockerfile that contains SteamCMD and Box86/64
 ############################################################
-FROM arm64v8/debian:bullseye-slim as build_stage
+
+############################################
+# Box86/64 Build Stage
+############################################
+FROM arm64v8/debian:bullseye as box_build
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -16,12 +20,20 @@ RUN git clone https://github.com/ptitSeb/box86.git; mkdir /box86/build && \
 WORKDIR /box86/build
 RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
-    make install
+    make install DESTDIR=/tmp/install
 
 WORKDIR /box64/build
 RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
-    make install
+    make install DESTDIR=/tmp/install
+
+############################################
+# SteamCMD Build Stage
+############################################
+
+FROM arm64v8/debian:bullseye-slim as build_stage
+
+COPY --from=box_build /tmp/install / 
 
 LABEL maintainer="github@snry.me"
 ARG PUID=1000
@@ -34,8 +46,11 @@ ENV DEBUGGER "/usr/local/bin/box86"
 
 RUN set -x \
 	# Install, update & upgrade packages
+        && dpkg --add-architecture armhf \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
+		libc6:armhf \
+		libstdc++6:armhf \
 		ca-certificates=20210119 \
 		nano=5.4-2+deb11u2 \
 		curl=7.74.0-1.3+deb11u11 \
@@ -62,7 +77,7 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Cleanup
-RUN rm -rf /var/lib/apt/lists/* && rm -rf /box86/build && rm -rf /box64/build
+RUN rm -rf /var/lib/apt/lists/*
 
 FROM build_stage AS bullseye-root
 WORKDIR ${STEAMCMDDIR}

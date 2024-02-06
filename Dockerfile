@@ -1,8 +1,7 @@
 ############################################################
-# Build Box64 and Box86
+# Dockerfile that contains SteamCMD and Box86/64
 ############################################################
-
-FROM arm64v8/debian:bullseye-slim as box_build
+FROM arm64v8/debian:bullseye-slim as build_stage
 
 RUN dpkg --add-architecture armhf && \
     apt-get update && \
@@ -17,20 +16,12 @@ RUN git clone https://github.com/ptitSeb/box86.git; mkdir /box86/build && \
 WORKDIR /box86/build
 RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
-    make install DESTDIR=/tmp/install
+    make install
 
 WORKDIR /box64/build
 RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
-    make install DESTDIR=/tmp/install
-
-
-############################################################
-# Dockerfile that contains SteamCMD
-############################################################
-FROM arm64v8/debian:bullseye-slim as build_stage
-
-COPY --from=box_build /tmp/install /
+    make install
 
 LABEL maintainer="github@snry.me"
 ARG PUID=1000
@@ -57,7 +48,7 @@ RUN set -x \
         && su "${USER}" -c \
 		"mkdir -p \"${STEAMCMDDIR}\" \
                 && curl -fsSL 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C \"${STEAMCMDDIR}\" \
-                && \"./${STEAMCMDDIR}/steamcmd.sh\" +quit \
+                && ${STEAMCMDDIR}/steamcmd.sh +quit \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${STEAMCMDDIR}/steamservice.so\" \
                 && mkdir -p \"${HOMEDIR}/.steam/sdk32\" \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${HOMEDIR}/.steam/sdk32/steamclient.so\" \
@@ -71,7 +62,7 @@ RUN set -x \
 	&& rm -rf /var/lib/apt/lists/*
 
 # Cleanup
-RUN rm -rf /var/lib/apt/lists/*
+RUN rm -rf /var/lib/apt/lists/* && rm -rf /box86/build && rm -rf /box64/build
 
 FROM build_stage AS bullseye-root
 WORKDIR ${STEAMCMDDIR}

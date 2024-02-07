@@ -16,17 +16,19 @@ ENV DEBUGGER "/usr/local/bin/box86"
 RUN set -x \
 	# Install, update & upgrade packages
     && dpkg --add-architecture armhf \
-    && wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
-    && wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends --no-install-suggests \
-        box64-arm64 \
+ 	&& apt-get install -y --no-install-recommends --no-install-suggests \
+  		wget \
 		libc6:armhf \
 		libstdc++6:armhf \
 		ca-certificates=20210119 \
 		nano=5.4-2+deb11u2 \
 		curl=7.74.0-1.3+deb11u11 \
 		locales=2.31-13+deb11u7 \
+    && wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
+    && wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg \
+	&& apt-get install -y --no-install-recommends --no-install-suggests \
+        box64-arm64 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user

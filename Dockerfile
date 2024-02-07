@@ -2,35 +2,6 @@
 # Dockerfile that contains SteamCMD and Box86/64
 ############################################################
 
-############################################
-# Box86/64 Build Stage
-############################################
-FROM arm64v8/debian:bullseye as box_build
-
-RUN dpkg --add-architecture armhf && \
-    apt-get update && \
-    apt-get install --yes --no-install-recommends git python3 build-essential cmake ca-certificates && \
-    apt-get install --yes --no-install-recommends gcc-arm-linux-gnueabihf libc6-dev-armhf-cross libc6:armhf libstdc++6:armhf && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/{apt,dpkg,cache,log} /tmp/* /var/tmp/*
-
-RUN git clone https://github.com/ptitSeb/box86.git; mkdir /box86/build && \
-    git clone https://github.com/ptitSeb/box64.git; mkdir /box64/build
-
-WORKDIR /box86/build
-RUN cmake .. -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    make -j$(nproc) && \
-    make install DESTDIR=/tmp/install
-
-WORKDIR /box64/build
-RUN cmake .. -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
-    make -j$(nproc) && \
-    make install DESTDIR=/tmp/install
-
-############################################
-# SteamCMD Build Stage
-############################################
-
 FROM arm64v8/debian:bullseye-slim as build_stage
 
 COPY --from=box_build /tmp/install / 
@@ -47,8 +18,11 @@ ENV DEBUGGER "/usr/local/bin/box86"
 RUN set -x \
 	# Install, update & upgrade packages
     && dpkg --add-architecture armhf \
+    && wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
+    && wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
+        box64-arm64 \
 		libc6:armhf \
 		libstdc++6:armhf \
 		ca-certificates=20210119 \

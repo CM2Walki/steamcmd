@@ -18,12 +18,12 @@ RUN git clone https://github.com/ptitSeb/box86.git; mkdir /box86/build && \
     git clone https://github.com/ptitSeb/box64.git; mkdir /box64/build
 
 WORKDIR /box86/build
-RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+RUN cmake .. -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
     make install DESTDIR=/tmp/install
 
 WORKDIR /box64/build
-RUN cmake .. -DRPI4ARM64=1 -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
+RUN cmake .. -DARM_DYNAREC=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo && \
     make -j$(nproc) && \
     make install DESTDIR=/tmp/install
 
@@ -46,7 +46,7 @@ ENV DEBUGGER "/usr/local/bin/box86"
 
 RUN set -x \
 	# Install, update & upgrade packages
-        && dpkg --add-architecture armhf \
+    && dpkg --add-architecture armhf \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		libc6:armhf \

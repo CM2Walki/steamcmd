@@ -15,7 +15,7 @@ ENV DEBUGGER "/usr/local/bin/box86"
 
 RUN set -x \
 	# Install, update & upgrade packages
-    && dpkg --add-architecture armhf \
+	&& dpkg --add-architecture armhf \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
   		wget \
@@ -26,13 +26,13 @@ RUN set -x \
 		nano=5.4-2+deb11u2 \
 		curl=7.74.0-1.3+deb11u11 \
 		locales=2.31-13+deb11u7 \
-    && wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
-    && (wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg) \
+	&& wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
+	&& (wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg) \
 	&& wget https://itai-nelken.github.io/weekly-box86-debs/debian/box86.list -O /etc/apt/sources.list.d/box86.list \
 	&& (wget -qO- https://itai-nelken.github.io/weekly-box86-debs/debian/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg) \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-        box64-arm64 \
+		box64-arm64 \
 		box86 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \

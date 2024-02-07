@@ -4,8 +4,6 @@
 
 FROM arm64v8/debian:bullseye-slim as build_stage
 
-COPY --from=box_build /tmp/install / 
-
 LABEL maintainer="github@snry.me"
 ARG PUID=1000
 

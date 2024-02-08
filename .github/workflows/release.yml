@@ -3,6 +3,7 @@ name: Release master
 on:  # yamllint disable-line rule:truthy
   push:
     branches: [master]
+    paths: ['Dockerfile']
 
 jobs:
   release:
@@ -44,7 +45,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
   
   release-root:
-    name: Release - Docker image
+    name: Release Root - Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

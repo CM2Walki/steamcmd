@@ -1,11 +1,10 @@
 ---
-name: Release
+name: Release master
 on:  # yamllint disable-line rule:truthy
-  release:
-    types: [published]
+  push:
+    branches: [master]
 
 jobs:
-  # Builds the Dockerfile and pushes it to dockerhub
   release:
     name: Release - Docker image
     runs-on: ubuntu-latest
@@ -32,7 +31,6 @@ jobs:
           images: ${{ github.repository }}
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=semver,pattern=v{{version}}
             type=raw,value=steam
           flavor: latest=true
 
@@ -71,7 +69,6 @@ jobs:
           images: ${{ github.repository }}
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=semver,pattern=v{{version}}-root
             type=raw,value=root
           flavor: latest=false
 

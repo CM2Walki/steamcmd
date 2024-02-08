@@ -22,10 +22,9 @@ RUN set -x \
 		gnupg \
 		libc6:armhf \
 		libstdc++6:armhf \
-		ca-certificates=20210119 \
-		nano=5.4-2+deb11u2 \
-		curl=7.74.0-1.3+deb11u11 \
-		locales=2.31-13+deb11u7 \
+		ca-certificates \
+		curl \
+		locales \
 	&& wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
 	&& (wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg) \
 	&& wget https://itai-nelken.github.io/weekly-box86-debs/debian/box86.list -O /etc/apt/sources.list.d/box86.list \

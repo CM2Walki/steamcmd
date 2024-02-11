@@ -56,9 +56,6 @@ RUN set -x \
  	&& ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so" \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Cleanup
-RUN rm -rf /var/lib/apt/lists/*
-
 FROM build_stage AS bullseye-root
 WORKDIR ${STEAMCMDDIR}
 

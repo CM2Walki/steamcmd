@@ -1,7 +1,7 @@
 [![](https://img.shields.io/codacy/grade/6a8e207cf98246169e633d6f22da9d9c)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![Docker Stars](https://img.shields.io/docker/stars/sonroyaalmerol/steamcmd-arm64.svg)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![Docker Pulls](https://img.shields.io/docker/pulls/sonroyaalmerol/steamcmd-arm64.svg)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64)](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64)
 # Supported tags and respective `Dockerfile` links
-  -	[`steam`, `latest`  (*bullseye/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/Dockerfile)
-  -	[`root`  (*bullseye/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/Dockerfile)
+  -	[`steam`, `latest`  (*bookworm/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/Dockerfile)
+  -	[`root`  (*bookworm/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/Dockerfile)
 
 > [!IMPORTANT]
 > New versions of the Docker image are built every 24 hours to keep up with Box86 and Box64 updates.

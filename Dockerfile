@@ -18,7 +18,7 @@ RUN set -x \
 	&& dpkg --add-architecture armhf \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		libc6:armhf=2.36-8cross1 \
+		libc6:armhf=2.36-9+deb12u4 \
 		libstdc++6:armhf=12.2.0-14 \
 		ca-certificates=20230311 \
 		nano=7.2-1 \
@@ -42,7 +42,7 @@ RUN set -x \
         && su "${USER}" -c \
 		"mkdir -p \"${STEAMCMDDIR}\" \
                 && curl -fsSL 'https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz' | tar xvzf - -C \"${STEAMCMDDIR}\" \
-                && ${STEAMCMDDIR}/steamcmd.sh\" +quit \
+                && ${STEAMCMDDIR}/steamcmd.sh +quit \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${STEAMCMDDIR}/steamservice.so\" \
                 && mkdir -p \"${HOMEDIR}/.steam/sdk32\" \
                 && ln -s \"${STEAMCMDDIR}/linux32/steamclient.so\" \"${HOMEDIR}/.steam/sdk32/steamclient.so\" \

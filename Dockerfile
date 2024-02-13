@@ -18,9 +18,8 @@ RUN set -x \
 	&& dpkg --add-architecture armhf \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		libc6:armhf=2.36-8 \
+		libc6:armhf=2.36-8cross1 \
 		libstdc++6:armhf=12.2.0-14 \
-		lib32gcc-s1=12.2.0-14 \
 		ca-certificates=20230311 \
 		nano=7.2-1 \
 		curl=7.88.1-10+deb12u5 \

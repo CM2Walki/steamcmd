@@ -1,5 +1,5 @@
 ---
-name: Release Bookworm Images
+name: Bookworm Images
 on:  # yamllint disable-line rule:truthy
   push:
     branches: [master]

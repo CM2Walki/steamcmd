@@ -1,5 +1,5 @@
 ---
-name: Release Bullseye Images
+name: Bullseye Images
 on:  # yamllint disable-line rule:truthy
   push:
     branches: [master]

@@ -3,7 +3,9 @@ name: Release master
 on:  # yamllint disable-line rule:truthy
   push:
     branches: [master]
-    paths: ['Dockerfile']
+    paths: ['bookworm/Dockerfile']
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
   release:
@@ -42,6 +44,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=steam
+            type=raw,value=steam-bookworm
           flavor: latest=true
 
       - name: Docker - Build / Push
@@ -89,6 +92,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=root
+            type=raw,value=root-bookworm
           flavor: latest=false
 
       - name: Docker - Build / Push

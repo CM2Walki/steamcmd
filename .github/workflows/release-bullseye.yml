@@ -1,11 +1,13 @@
 ---
-name: Daily Build
+name: Release master
 on:  # yamllint disable-line rule:truthy
+  push:
+    branches: [master]
+    paths: ['bullseye/Dockerfile']
   schedule:
     - cron: '0 0 * * *'
 
 jobs:
-  # Builds the Dockerfile and pushes it to dockerhub
   release:
     name: Release - Docker image
     runs-on: ubuntu-latest
@@ -41,20 +43,21 @@ jobs:
             ghcr.io/${{ github.repository }}
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=steam
-          flavor: latest=true
+            type=raw,value=steam-bullseye
+          flavor: latest=false
 
       - name: Docker - Build / Push
         id: docker_build
         uses: docker/build-push-action@v5
         with:
           platforms: linux/arm64
-          target: bookworm
+          file: bullseye/Dockerfile
+          target: bullseye
           push: true
           tags: ${{ steps.meta.outputs.tags }}
   
   release-root:
-    name: Release - Docker image
+    name: Release Root - Docker image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -88,7 +91,7 @@ jobs:
             ghcr.io/${{ github.repository }}
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=root
+            type=raw,value=root-bullseye
           flavor: latest=false
 
       - name: Docker - Build / Push
@@ -96,6 +99,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           platforms: linux/arm64
-          target: bookworm-root
+          file: bullseye/Dockerfile
+          target: bullseye-root
           push: true
           tags: ${{ steps.meta.outputs.tags }}

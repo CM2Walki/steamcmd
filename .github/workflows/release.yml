@@ -52,6 +52,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           platforms: linux/arm64
+          file: bookworm/Dockerfile
           target: bookworm
           push: true
           tags: ${{ steps.meta.outputs.tags }}
@@ -100,6 +101,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           platforms: linux/arm64
+          file: bookworm/Dockerfile
           target: bookworm-root
           push: true
           tags: ${{ steps.meta.outputs.tags }}

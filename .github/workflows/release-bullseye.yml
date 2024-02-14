@@ -6,7 +6,8 @@ on:  # yamllint disable-line rule:truthy
     paths: ['bullseye/Dockerfile']
   schedule:
     - cron: '0 0 * * *'
-
+  workflow_dispatch:
+  
 jobs:
   release:
     name: Release - Docker image

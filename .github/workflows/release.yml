@@ -1,5 +1,5 @@
 ---
-name: Release master
+name: Release Bookworm Images
 on:  # yamllint disable-line rule:truthy
   push:
     branches: [master]
@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
   schedule:
     - cron: '0 0 * * *'
   workflow_dispatch:
-  
+
 jobs:
   release:
     name: Release - Docker image

@@ -1,4 +1,4 @@
-[![](https://img.shields.io/codacy/grade/6a8e207cf98246169e633d6f22da9d9c)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![Docker Stars](https://img.shields.io/docker/stars/sonroyaalmerol/steamcmd-arm64.svg)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![Docker Pulls](https://img.shields.io/docker/pulls/sonroyaalmerol/steamcmd-arm64.svg)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64)](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64) [![Bookworm Images](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release.yml/badge.svg)](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release.yml) [![Bullseye Images](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release-bullseye.yml/badge.svg)](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release-bullseye.yml)
+[![](https://img.shields.io/codacy/grade/6a8e207cf98246169e633d6f22da9d9c)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![Docker Pulls](https://img.shields.io/docker/pulls/sonroyaalmerol/steamcmd-arm64.svg)](https://hub.docker.com/r/sonroyaalmerol/steamcmd-arm64/) [![](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64)](https://img.shields.io/docker/image-size/sonroyaalmerol/steamcmd-arm64) [![Bookworm Images](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release.yml/badge.svg)](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release.yml) [![Bullseye Images](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release-bullseye.yml/badge.svg)](https://github.com/sonroyaalmerol/steamcmd-arm64/actions/workflows/release-bullseye.yml)
 
 # Supported tags and respective `Dockerfile` links
   -	[`steam`, `steam-bookworm`, `latest` (*bookworm/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/bookworm/Dockerfile)
@@ -7,7 +7,7 @@
   -	[`root-bullseye` (*bullseye/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/bullseye/Dockerfile)
 
 > [!IMPORTANT]
-> New versions of the Docker image are built every 24 hours to keep up with Box86 and Box64 updates.
+> New versions of the Docker image are built every 24 hours to keep up with Box86 and Box64 updates. The rest of the installed packages are version pinned to ensure stability.
 
 # What is SteamCMD?
 The Steam Console Client or SteamCMD is a command-line version of the Steam client. Its primary use is to install and update various dedicated servers available on Steam using a command-line interface. It works with games that use the SteamPipe content system. All games have been migrated from the deprecated HLDSUpdateTool to SteamCMD. This image can be used as a base image for Steam-based dedicated servers (Source: [developer.valvesoftware.com](https://developer.valvesoftware.com/wiki/SteamCMD)).

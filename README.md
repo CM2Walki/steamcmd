@@ -15,11 +15,10 @@ The Steam Console Client or SteamCMD is a command-line version of the Steam clie
 # What makes this compatible with ARM64?
 This image has [Box64](https://github.com/ptitSeb/box64) and [Box86](https://github.com/ptitSeb/box86) integrated. By default, SteamCMD will be using Box86 when running via the steamcmd.sh shell script. Box86 is needed as SteamCMD itself a 32-bit binary application. For 64-bit server binaries, please use Box64 `/usr/local/bin/box64`. For tweaking, environment variables could be used for both [Box64](https://github.com/ptitSeb/box64/blob/main/docs/USAGE.md) and [Box86](https://github.com/ptitSeb/box86/blob/master/docs/USAGE.md).
 
-
+# How to use this image
 > [!IMPORTANT]
 > Images are hosted in ghcr.io (ghcr.io/sonroyaalmerol/steamcmd-arm64) and Docker Hub (sonroyaalmerol/steamcmd-arm64).
 
-# How to use this image
 Whilst it's recommended to use this image as a base image of other game servers, you can also run it in an interactive shell using the following command:
 ```console
 $ docker run -it --name=steamcmd ghcr.io/sonroyaalmerol/steamcmd-arm64 bash

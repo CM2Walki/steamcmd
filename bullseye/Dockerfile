@@ -13,6 +13,7 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBUGGER "/usr/local/bin/box86"
 
+# hadolint ignore=DL3008
 RUN set -x \
 	# Install, update & upgrade packages
 	&& dpkg --add-architecture armhf \

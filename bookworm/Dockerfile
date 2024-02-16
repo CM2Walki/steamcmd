@@ -13,6 +13,9 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBUGGER "/usr/local/bin/box86"
 
+# Set SHELL option explicitly
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 # hadolint ignore=DL3008
 RUN set -x \
 	# Install, update & upgrade packages
@@ -38,7 +41,7 @@ RUN set -x \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user
-	&& useradd -u "${PUID}" -m "${USER}" \
+	&& useradd -l -u "${PUID}" -m "${USER}" \
         # Download SteamCMD, execute as user
         && su "${USER}" -c \
 		"mkdir -p \"${STEAMCMDDIR}\" \

@@ -13,6 +13,9 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBUGGER "/usr/local/bin/box86"
 
+# Set SHELL option explicitly
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+
 # hadolint ignore=DL3008
 RUN set -x \
 	# Install, update & upgrade packages
@@ -27,9 +30,9 @@ RUN set -x \
 		locales=2.36-9+deb12u4 \
   		wget=1.21.3-1+b1 \
 		gnupg=2.2.40-1.1 \
-	&& wget https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
+	&& wget --progress=dot:giga https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
 	&& (wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg) \
-	&& wget https://itai-nelken.github.io/weekly-box86-debs/debian/box86.list -O /etc/apt/sources.list.d/box86.list \
+	&& wget --progress=dot:giga https://itai-nelken.github.io/weekly-box86-debs/debian/box86.list -O /etc/apt/sources.list.d/box86.list \
 	&& (wget -qO- https://itai-nelken.github.io/weekly-box86-debs/debian/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg) \
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
@@ -38,7 +41,7 @@ RUN set -x \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user
-	&& useradd -u "${PUID}" -m "${USER}" \
+	&& useradd -l -u "${PUID}" -m "${USER}" \
         # Download SteamCMD, execute as user
         && su "${USER}" -c \
 		"mkdir -p \"${STEAMCMDDIR}\" \

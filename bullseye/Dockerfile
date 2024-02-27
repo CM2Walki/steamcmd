@@ -13,7 +13,7 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV DEBUGGER "/usr/local/bin/box86"
+ENV DEBUGGER "/usr/bin/qemu-i386-static"
 
 # Set SHELL option explicitly
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -22,8 +22,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -x \
 	# Install, update & upgrade packages
 	&& dpkg --add-architecture armhf \
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
+		libc6:i386=2.31-13+deb11u8 \
 		libc6:armhf=2.31-13+deb11u8 \
 		libstdc++6:armhf=10.2.1-6 \
 		ca-certificates=20210119 \
@@ -36,8 +38,8 @@ RUN set -x \
 	&& apt-mark hold qemu-user-static \
 	&& for file in /usr/bin/qemu-*-static /usr/lib/binfmt.d/qemu-* /usr/libexec/qemu-binfmt/* /usr/sbin/qemu-* /usr/share/binfmts/qemu-* /usr/share/doc/qemu-user-static/* /usr/share/lintian/overrides/qemu-user-static /usr/share/man/man1/qemu-*; do \
         case "$file" in \
-            "/usr/bin/qemu-arm-static" | \
-            "/usr/share/man/man1/qemu-arm-static.1.gz") \
+            "/usr/bin/qemu-i386-static" | \
+            "/usr/share/man/man1/qemu-i386-static.1.gz") \
                 continue;; \
             *) \
                 rm -f "$file";; \

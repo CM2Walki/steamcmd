@@ -5,10 +5,18 @@ on:  # yamllint disable-line rule:truthy
     branches: [master]
     paths: ['bookworm/Dockerfile']
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 0 * * 0'
   workflow_dispatch:
 
 jobs:
+  get-date:
+    name: Get Current Date
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get current date
+        run: |
+          echo "TODAY=$(date +%Y-%m-%d)" >> $GITHUB_ENV
+
   release:
     name: Release - Docker image
     runs-on: ubuntu-latest
@@ -46,6 +54,7 @@ jobs:
           tags: |
             type=raw,value=steam
             type=raw,value=steam-bookworm
+            type=raw,value=steam-bookworm-${{ env.TODAY }}
           flavor: latest=true
 
       - name: Docker - Build / Push
@@ -95,6 +104,7 @@ jobs:
           tags: |
             type=raw,value=root
             type=raw,value=root-bookworm
+            type=raw,value=root-bookworm-${{ env.TODAY }}
           flavor: latest=false
 
       - name: Docker - Build / Push

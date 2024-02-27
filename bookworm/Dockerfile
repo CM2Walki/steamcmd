@@ -8,10 +8,8 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 # hadolint ignore=DL3008
 RUN set -x \
 	# Install, update & upgrade packages
-	&& dpkg --add-architecture i386 \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		libc6:i386=2.36-9+deb12u4 \
 		qemu-user-static=1:7.2+dfsg-7+deb12u5 \
 	&& rm -rf /var/lib/apt/lists/*
 

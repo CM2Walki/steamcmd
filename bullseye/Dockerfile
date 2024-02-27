@@ -1,4 +1,4 @@
-FROM arm64v8/debian:bookworm-slim as qemu_build
+FROM arm64v8/debian:bullseye-slim as qemu_build
 
 ENV DEBIAN_FRONTEND noninteractive
 

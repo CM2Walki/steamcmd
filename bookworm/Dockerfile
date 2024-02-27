@@ -11,6 +11,8 @@ ENV USER steam
 ENV HOMEDIR "/home/${USER}"
 ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
+ENV DEBIAN_FRONTEND noninteractive
+
 ENV DEBUGGER "/usr/local/bin/box86"
 
 # Set SHELL option explicitly
@@ -20,8 +22,10 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN set -x \
 	# Install, update & upgrade packages
 	&& dpkg --add-architecture armhf \
+	&& dpkg --add-architecture i386 \
 	&& apt-get update \
  	&& apt-get install -y --no-install-recommends --no-install-suggests \
+		libc6:i386=2.36-9+deb12u4 \
 		libc6:armhf=2.36-9+deb12u4 \
 		libstdc++6:armhf=12.2.0-14 \
 		ca-certificates=20230311 \
@@ -30,14 +34,27 @@ RUN set -x \
 		locales=2.36-9+deb12u4 \
   		wget=1.21.3-1+b1 \
 		gnupg=2.2.40-1.1 \
+		qemu-user-static=1:7.2+dfsg-7+deb12u5 \
+	&& apt-mark hold qemu-user-static \
+	&& for file in /usr/bin/qemu-*-static /usr/lib/binfmt.d/qemu-* /usr/libexec/qemu-binfmt/* /usr/sbin/qemu-* /usr/share/binfmts/qemu-* /usr/share/doc/qemu-user-static/* /usr/share/lintian/overrides/qemu-user-static /usr/share/man/man1/qemu-*; do \
+        case "$file" in \
+            "/usr/bin/qemu-i386-static" | \
+            "/usr/share/man/man1/qemu-i386-static.1.gz") \
+                continue;; \
+            *) \
+                rm -f "$file";; \
+        esac; \
+    done \
 	&& wget --progress=dot:giga https://ryanfortner.github.io/box64-debs/box64.list -O /etc/apt/sources.list.d/box64.list \
 	&& (wget -qO- https://ryanfortner.github.io/box64-debs/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box64-debs-archive-keyring.gpg) \
 	&& wget --progress=dot:giga https://itai-nelken.github.io/weekly-box86-debs/debian/box86.list -O /etc/apt/sources.list.d/box86.list \
 	&& (wget -qO- https://itai-nelken.github.io/weekly-box86-debs/debian/KEY.gpg | gpg --dearmor -o /etc/apt/trusted.gpg.d/box86-debs-archive-keyring.gpg) \
 	&& apt-get update \
-	&& apt-get install -y --no-install-recommends --no-install-suggests \
+	&& apt-get download -y \
 		box64-arm64 \
 		box86 \
+	&& dpkg --force-all -i ./*.deb \
+	&& rm -rf ./*.deb \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user

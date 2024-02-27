@@ -9,18 +9,15 @@ on:  # yamllint disable-line rule:truthy
   workflow_dispatch:
 
 jobs:
-  get-date:
-    name: Get Current Date
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get current date
-        run: |
-          echo "TODAY=$(date +%Y-%m-%d)" >> $GITHUB_ENV
-
   release:
     name: Release - Docker image
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: current-date
+        run: |
+          echo "TODAY=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -53,7 +50,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=steam-bullseye
-            type=raw,value=steam-bullseye-${{ env.TODAY }}
+            type=raw,value=steam-bullseye-${{ steps.current-date.outputs.TODAY }}
           flavor: latest=false
 
       - name: Docker - Build / Push
@@ -70,6 +67,11 @@ jobs:
     name: Release Root - Docker image
     runs-on: ubuntu-latest
     steps:
+      - name: Get current date
+        id: current-date
+        run: |
+          echo "TODAY=$(date +%Y-%m-%d)" >> "$GITHUB_OUTPUT"
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -102,7 +104,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=raw,value=root-bullseye
-            type=raw,value=root-bullseye-${{ env.TODAY }}
+            type=raw,value=root-bullseye-${{ steps.current-date.outputs.TODAY }}
           flavor: latest=false
 
       - name: Docker - Build / Push

@@ -13,7 +13,7 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV DEBUGGER "/usr/bin/qemu-i386-static"
+ENV DEBUGGER "/usr/local/bin/box86"
 
 # Set SHELL option explicitly
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]

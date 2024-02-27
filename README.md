@@ -7,7 +7,7 @@
   -	[`root-bullseye` (*bullseye/Dockerfile*)](https://github.com/sonroyaalmerol/steamcmd-arm64/blob/master/bullseye/Dockerfile)
 
 > [!IMPORTANT]
-> New versions of the Docker image are built every week to keep up with Box86 and Box64 updates. The rest of the installed packages are version pinned to ensure stability.
+> New versions of the Docker image are built every week to keep up with Box86 and Box64 updates. The rest of the installed packages are version pinned to ensure stability. Use a specific tag with a date if you want to pin a specific release.
 
 # What is SteamCMD?
 The Steam Console Client or SteamCMD is a command-line version of the Steam client. Its primary use is to install and update various dedicated servers available on Steam using a command-line interface. It works with games that use the SteamPipe content system. All games have been migrated from the deprecated HLDSUpdateTool to SteamCMD. This image can be used as a base image for Steam-based dedicated servers (Source: [developer.valvesoftware.com](https://developer.valvesoftware.com/wiki/SteamCMD)).

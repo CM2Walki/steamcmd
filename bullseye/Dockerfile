@@ -76,19 +76,6 @@ RUN set -x \
  	&& ln -s "${STEAMCMDDIR}/linux64/steamclient.so" "/usr/lib/x86_64-linux-gnu/steamclient.so" \
 	&& rm -rf /var/lib/apt/lists/*
 
-# Clean other qemu binaries
-RUN for file in /usr/lib/binfmt.d/qemu-*.conf \
-			/usr/libexec/qemu-binfmt/*-binfmt-P \
-			/usr/sbin/qemu-debootstrap \
-			/usr/share/binfmts/qemu-* \
-			/usr/share/doc/qemu-user-static/* \
-			/usr/share/lintian/overrides/qemu-user-static \
-			/usr/share/man/man1/qemu-*-static.1.gz; do \
-		if [[ "$file" != "/usr/share/man/man1/qemu-arm-static.1.gz" ]]; then \
-			rm -rf "$file"; \
-		fi; \
-	done
-
 FROM build_stage AS bullseye-root
 WORKDIR ${STEAMCMDDIR}
 

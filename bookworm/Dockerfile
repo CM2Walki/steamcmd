@@ -28,13 +28,13 @@ ENV STEAMCMDDIR "${HOMEDIR}/steamcmd"
 
 ENV DEBIAN_FRONTEND noninteractive
 
-ENV DEBUGGER "/usr/local/bin/box86"
+ENV DEBUGGER "/usr/bin/qemu-x86_64-static"
 
 # Set SHELL option explicitly
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 COPY --from=qemu_build /usr/bin/qemu-i386-static /usr/bin/qemu-i386-static
-COPY --from=qemu_build /usr/bin/qemu-arm-static /usr/bin/qemu-arm-static
+COPY --from=qemu_build /usr/bin/qemu-x86_64-static /usr/bin/qemu-x86_64-static
 
 # hadolint ignore=DL3008
 RUN set -x \

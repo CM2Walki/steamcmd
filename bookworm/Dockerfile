@@ -18,7 +18,7 @@ RUN set -x \
 		lib32gcc-s1=12.2.0-14 \
 		ca-certificates=20230311 \
 		nano=7.2-1+deb12u1 \
-		curl=7.88.1-10+deb12u5 \
+		curl=7.88.1-10+deb12u6 \
 		locales=2.36-9+deb12u7 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \

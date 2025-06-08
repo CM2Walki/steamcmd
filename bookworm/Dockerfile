@@ -14,8 +14,8 @@ RUN set -x \
 	# Install, update & upgrade packages
 	&& apt-get update \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
-		lib32stdc++6=12.2.0-14 \
-		lib32gcc-s1=12.2.0-14 \
+		lib32stdc++6=12.2.0-14+deb12u1 \
+		lib32gcc-s1=12.2.0-14+deb12u1 \
 		ca-certificates=20230311 \
 		nano=7.2-1+deb12u1 \
 		curl=7.88.1-10+deb12u12 \

@@ -16,10 +16,10 @@ RUN set -x \
 	&& apt-get install -y --no-install-recommends --no-install-suggests \
 		lib32stdc++6=12.2.0-14+deb12u1 \
 		lib32gcc-s1=12.2.0-14+deb12u1 \
-		ca-certificates=20230311 \
+		ca-certificates=20230311+deb12u1 \
 		nano=7.2-1+deb12u1 \
-		curl=7.88.1-10+deb12u12 \
-		locales=2.36-9+deb12u10 \
+		curl=7.88.1-10+deb12u14 \
+		locales=2.36-9+deb12u13 \
 	&& sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
 	&& dpkg-reconfigure --frontend=noninteractive locales \
 	# Create unprivileged user

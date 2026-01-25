@@ -19,7 +19,7 @@ RUN set -x \
         ca-certificates=20250419 \
         nano=8.4-1 \
         curl=8.14.1-2+deb13u2 \
-        locales=2.41-12 \
+        locales=2.41-12+deb13u1 \
     && sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen \
     && dpkg-reconfigure --frontend=noninteractive locales \
     # Create unprivileged user
